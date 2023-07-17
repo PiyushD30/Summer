@@ -77,10 +77,14 @@ class Home extends StatelessWidget {
                            fontWeight: FontWeight.bold,
                            letterSpacing: 3.0,
                            fontFamily: 'Comic_Neue',
-                         ),),
-    ]
-    ),
-    ),),
-            ]));
-  }
+                         ),
+                       ),
+                     ]
+                  ),
+                ),
+             ),
+           ]
+        )
+     );
+   }
 }
