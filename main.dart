@@ -1,86 +1,89 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'package:flutter/material.dart';
-void main() => runApp(MaterialApp(
-    home: Home()
-));
+import 'event.dart';
 
-class Home extends StatelessWidget {
-  const Home({Key? key}) : super(key: key);
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  final List<Event> events = [
+    Event(
+      title: 'Event 1',
+      description: 'Description of Event 1',
+      date: DateTime.now(),
+    ),
+    Event(
+      title: 'Event 2',
+      description: 'Description of Event 2',
+      date: DateTime.now(),
+    ),
+    Event(
+      title: 'Event 3',
+      description: 'Description of Event 3',
+      date: DateTime.now(),
+    ),
+    Event(
+      title: 'Event 4',
+      description: 'Description of Event 4',
+      date: DateTime.now(),
+    ),
+    Event(
+      title: 'Event 5',
+      description: 'Description of Event 5',
+      date: DateTime.now(),
+  ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold (
-      body:
-
-      Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Expanded(
-            flex:1,
-            child: Container(
-              color: Colors.blueGrey[200],
-              child: Image.network('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZbUZdHqDNxKZRnmVnl9pG86E0-xCZiDWd9J4Eeyai0Nl_-bq7EBMaEoiISZfROGbQL-4&usqp=CAU',fit: BoxFit.cover),
-            ),
-            ),
-          Expanded(
-          flex: 2,
-          child: Container(
-             padding: EdgeInsets.fromLTRB(10.0,0.0,10.0,10.0),
-             color: Colors.blueGrey[200],
-             child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+    return MaterialApp(
+      title: 'Home Page',
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Events'),
+          centerTitle: true,
+          backgroundColor: Colors.indigo[900],
+        ),
+        body: ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (BuildContext context, int index) {
+            return Container(
+              margin: EdgeInsets.all(10.0),
+              padding: EdgeInsets.all(10.0),
+              decoration: BoxDecoration(
+                color: Colors.grey[200],
+                border: Border.all(color: Colors.grey),
+                borderRadius: BorderRadius.circular(10.0),
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                     Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text('Email',
-                        style: TextStyle(
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 3.0,
-                          fontFamily: 'Comic_Neue',
-                        ),)),
-                     TextField(
-                     decoration: InputDecoration(
-                         prefixIcon: Icon(Icons.email)
-                     ),),
-                     SizedBox(height: 10.0),
-                     Align(
-                     alignment: Alignment.centerLeft,
-                     child: Text('Password',
-                       style: TextStyle(
-                         fontSize: 20.0,
-                         fontWeight: FontWeight.bold,
-                         letterSpacing: 3.0,
-                         fontFamily: 'Comic_Neue',
-                       ),)),
-                     TextField(
-                     obscureText: true,
-                     decoration: InputDecoration(
-                       prefixIcon: Icon(Icons.person),
-                     ),),
-                     SizedBox(height: 20.0),
-                     ElevatedButton(
-                         onPressed: () {},
-                         child: Text('Login',
-                           style: TextStyle(
-                             fontSize: 20.0,
-                             fontWeight: FontWeight.bold,
-                             letterSpacing: 3.0,
-                             fontFamily: 'Comic_Neue',
-                           ),),
-                     ),
-                     SizedBox(height: 20.0),
-                     Text("Don't have an account ? Sign Up",
-                         style: TextStyle(
-                           fontSize: 20.0,
-                           fontWeight: FontWeight.bold,
-                           letterSpacing: 3.0,
-                           fontFamily: 'Comic_Neue',
-                         ),),
-    ]
-    ),
-    ),),
-            ]));
+                  Text(
+                    events[index].title,
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 5.0),
+                  Text(
+                    events[index].description,
+                    style: TextStyle(fontSize: 16.0),
+                  ),
+                  SizedBox(height: 5.0),
+                  Align(
+                    alignment: Alignment.centerRight,
+                    child: Text(
+                      'Date: ${events[index].date.toString()}',
+                      style: TextStyle(fontSize: 16.0),
+                    ),
+                  ),
+                ],
+              ),
+            );
+          },
+        ),
+      ),
+    );
   }
 }
